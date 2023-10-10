@@ -9,4 +9,10 @@ add_executable(untitled main.cpp
         Teacher.cpp
         Teacher.h
         Student.cpp
-        Student.h)
+        Student.h
+        Animal.cpp
+        Animal.h
+        Dog.cpp
+        Dog.h
+        Cat.cpp
+        Cat.h)

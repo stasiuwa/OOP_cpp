@@ -14,7 +14,7 @@ Student::Student(string name1, string surname1, int age1, string index1):
 Student::Student(){
     cout<<"Konstruktor bez. klasy pochodnej Student"<<endl;
 }
-void Student::setIndex(std::string newIndex) {
+void Student::setIndex(string newIndex) {
     index=newIndex;
 }
 
