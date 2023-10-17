@@ -4,7 +4,9 @@
 
 #include "Employee.h"
 
-Employee::Employee() {}
+Employee::Employee() {
+    std::cout<<"Konstruktor bezargumentowy klasy bazowej Employee"<<std::endl;
+}
 
 Employee::Employee(const std::string &surname, int age, int exp, int salary) : surname(surname), age(age), exp(exp),
                                                                                salary(salary) {}
@@ -49,14 +51,15 @@ void Employee::show() {
     std::cout
         <<"PRACOWNIK"
         <<"\nnazwisko: "<<surname
-        <<"\nwiek: "<<age
-        <<"\ndoświadczenie: "<<exp
-        <<"\nwynagrodzenie: "<<salary
+        <<"\twiek: "<<age
+        <<"\tdoswiadczenie: "<<exp
+        <<"\twynagrodzenie: "<<salary
     <<std::endl;
 }
 
 void Employee::whoWorkMoreThan5Years(Employee **employees, int size) {
-    for (int i=0; i<size; i++){ if( employees[i]->getAge() > 5 ) employees[i]->show(); }
+    std::cout<<"KTO PRZEPRACOWAL +5 LAT: "<<std::endl;
+    for (int i=0; i<size; i++){ if( employees[i]->getExp() > 5 ) employees[i]->show(); }
 }
 void Employee::howManyEarnLessThanMeanSalary(Employee **employees, int size) {
     int salarySum = 0, counter=0;
@@ -67,4 +70,9 @@ void Employee::howManyEarnLessThanMeanSalary(Employee **employees, int size) {
     for (int i=0; i<size; i++){
         if( employees[i]->getSalary() < salaryMean ) counter++;
     }
+    std::cout<<"ILU ZARABIA MNIEJ NIZ SREDNIA = " << salaryMean << " : " << counter <<std::endl;
+}
+
+Employee::~Employee() {
+    std::cout<<"Destruktor wirtualny klasy bazowej Employee"<<std::endl;
 }

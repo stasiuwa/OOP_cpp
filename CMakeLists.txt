@@ -3,7 +3,7 @@ project(untitled)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(untitled lab1/main.cpp
+add_executable(untitled
         lab1/Person.cpp
         lab1/Person.h
         lab1/Teacher.cpp
@@ -16,7 +16,6 @@ add_executable(untitled lab1/main.cpp
         lab1/Dog.h
         lab1/Cat.cpp
         lab1/Cat.h
-        lab2/main.cpp
         lab2/Figure.cpp
         lab2/Figure.h
         lab2/Square.cpp
@@ -28,4 +27,11 @@ add_executable(untitled lab1/main.cpp
         lab2/Developer.cpp
         lab2/Developer.h
         lab2/TeamLeader.cpp
-        lab2/TeamLeader.h)
+        lab2/TeamLeader.h
+        main.cpp
+        lab2/Bufor.cpp
+        lab2/Bufor.h
+        lab2/MeanBufor.cpp
+        lab2/MeanBufor.h
+        lab2/MaxBufor.cpp
+        lab2/MaxBufor.h)

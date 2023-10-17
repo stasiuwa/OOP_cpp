@@ -1,0 +1,20 @@
+//
+// Created by student on 16.10.2023.
+//
+#include <iostream>
+#include "Employee.h"
+#include "Developer.h"
+#include "TeamLeader.h"
+
+int main(){
+
+    Employee* employees[3] = {
+            new Developer("Zdun",25,3,2200),
+            new TeamLeader("Łęcina",20,1,1800),
+            new Developer("Boner",45,20,200),
+    };
+    Employee::whoWorkMoreThan5Years(employees,3);
+    Employee::howManyEarnLessThanMeanSalary(employees,3);
+
+    return 0;
+}

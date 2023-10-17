@@ -32,8 +32,8 @@ public:
     int getSalary() const;
     void setSalary(int salary);
 
-    void whoWorkMoreThan5Years(Employee **employees, int size);
-    void howManyEarnLessThanMeanSalary(Employee **employees, int size);
+    void static whoWorkMoreThan5Years(Employee **employees, int size);
+    void static howManyEarnLessThanMeanSalary(Employee **employees, int size);
 
 };
 
