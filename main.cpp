@@ -31,29 +31,34 @@ T elMin(T* arr, int size){
 }
 
 int main(){
-    Array<int> a1(10);
-    a1.add(11);
-    a1.add(3);
-    a1.add(6);
-    a1.add(1);
-    a1.add(3);
-    a1.show();
-    a1.sortR();
-    a1.show();
-    cout << "max: " << a1.maxElem() << endl;
-    cout << "index: " << a1.search(3) << endl;
+//    Zadanie 3.3
 
-    Array<double> a2;
-    a2.add(12.4);
-    a2.add(3.54);
-    a2.add(9.6);
-    a2.add(6.9);
-    cout << "max: " << a2.maxElem() << endl;
-    cout << "index: " << a2.search(1) << endl;
-    a2.show();
-    a2.sortR();
-    a2.show();
+//    Array<int>* a1;
+//    a1 = new Array<int>(10);
+//    a1->add(11);
+//    a1->add(3);
+//    a1->add(6);
+//    a1->add(1);
+//    a1->add(3);
+//    a1->show();
+//    a1->sortR();
+//    a1->show();
+//    cout << "max: " << a1->maxElem() << endl;
+//    cout << "index: " << a1->search(3) << endl;
+//
+//    Array<double>* a2;
+//    a2 = new Array<double>();
+//    a2->add(12.4);
+//    a2->add(3.54);
+//    a2->add(9.6);
+//    a2->add(6.9);
+//    cout << "max: " << a2->maxElem() << endl;
+//    cout << "index: " << a2->search(1) << endl;
+//    a2->show();
+//    a2->sortR();
+//    a2->show();
 
+//    Zadanie 3.1 3.2
 //    double test[6] = {5.42, 1.11, 20.3875, 0, -345.2, -1};
 //    double min = elMin(test,6);
 //    std::cout<<"elem min= "<<min<<std::endl;
@@ -68,7 +73,7 @@ int main(){
 //    showAll(arrAdd,3);
 //
 //    Student<std::string>* arrStu[3];
-//    for(int i=0;i<3;i++) arrStu[i]=new Student<std::string>(i+2,"Ala");
+//    for(int i=0;i<3;i++) arrStu[i]=new Student<std::string>(i+2,"Pduzian");
 //    showAll(arrStu,3);
 //
 //    for(int i=0;i<3;i++) delete arrAdd[i];
@@ -78,8 +83,8 @@ int main(){
 //    a1.add(5.5);
 //    a1.show();
 //
-//    Adding<std::string> a2("ciach ");
-//    a2.add("napis");
+//    Adding<std::string> a2("RKS ");
+//    a2.add("HUWDU");
 //    a2.show();
 
     return 0;
