@@ -5,51 +5,82 @@
 // Created by student on 16.10.2023.
 //
 #include <iostream>
-#include <ctime>
-#include "lab2/Employee.h"
-#include "lab2/Developer.h"
-#include "lab2/TeamLeader.h"
-#include "lab2/Bufor.h"
-#include "lab2/MaxBufor.h"
-#include "lab2/MeanBufor.h"
+
+#include "lab3/Adding.h"
+#include "lab3/Student.h"
+#include "lab3/Array.h"
+
+using namespace std;
+
+template <typename T>
+void mySwap(T& a, T& b){
+    T temp;
+    temp=a;
+    a=b;
+    b=temp;
+}
+template <typename T>
+void showAll(T* tab[], int n){
+    for(int i=0;i>n;i++) tab[i]->show();
+}
+template <typename T>
+T elMin(T* arr, int size){
+    T min = arr[0];
+    for(int i=0;i<size;i++) if(arr[i]<min) min=arr[i];
+    return min;
+}
 
 int main(){
+    Array<int> a1(10);
+    a1.add(11);
+    a1.add(3);
+    a1.add(6);
+    a1.add(1);
+    a1.add(3);
+    a1.show();
+    a1.sortR();
+    a1.show();
+    cout << "max: " << a1.maxElem() << endl;
+    cout << "index: " << a1.search(3) << endl;
 
-//    Zadanie 2.2
-//    Employee* employees[3] = {
-//            new Developer("Zdun",25,3,2200),
-//            new TeamLeader("Lecina",20,1,1800),
-//            new Developer("Boner",45,20,200),
-//    };
-//    Employee::whoWorkMoreThan5Years(employees,3);
-//    Employee::howManyEarnLessThanMeanSalary(employees,3);
+    Array<double> a2;
+    a2.add(12.4);
+    a2.add(3.54);
+    a2.add(9.6);
+    a2.add(6.9);
+    cout << "max: " << a2.maxElem() << endl;
+    cout << "index: " << a2.search(1) << endl;
+    a2.show();
+    a2.sortR();
+    a2.show();
 
-//    Zadanie 2.3
-//    MeanBufor arr1 = MeanBufor(10);
-//    MaxBufor arr2 = MaxBufor(15);
+//    double test[6] = {5.42, 1.11, 20.3875, 0, -345.2, -1};
+//    double min = elMin(test,6);
+//    std::cout<<"elem min= "<<min<<std::endl;
+
+//    double x=5.678, y=76.123;
+//    std::cout<<"x = "<<x<<" y = "<<y<<std::endl;
+//    mySwap(x,y);
+//    std::cout<<"x = "<<x<<" y = "<<y<<std::endl;
 //
-//    std::cout<<"Rozmiar tablicy 1: "<<arr1.getArraySize()<<std::endl;
-//    std::cout<<"Rozmiar tablicy 2: "<<arr2.getArraySize()<<std::endl;
+//    Adding<int>* arrAdd[3];
+//    for(int i=0;i<3;i++) arrAdd[i]=new Adding<int>(i);
+//    showAll(arrAdd,3);
 //
-//    for (int i=0; i<arr1.getArraySize(); i++){
-//        arr1.add(i*2);
-//        arr2.add(i+1);
-//    }
-//    arr2.add(2137);
-//    arr2.add(7312);
-//    arr2.add(3721);
-//    arr2.add(1237);
-//    arr2.add(3127);
-//    arr2.add(1372);
+//    Student<std::string>* arrStu[3];
+//    for(int i=0;i<3;i++) arrStu[i]=new Student<std::string>(i+2,"Ala");
+//    showAll(arrStu,3);
 //
-//    arr2.setTab(0,420);
-//    arr1.setTab(3,420);
+//    for(int i=0;i<3;i++) delete arrAdd[i];
+//    for(int i=0;i<3;i++) delete arrStu[i];
+
+//    Adding<double> a1(5.5);
+//    a1.add(5.5);
+//    a1.show();
 //
-//    arr1.show();
-//    arr2.show();
-//
-//    std::cout<<"calculate() dla tablicy 1 sr.ary: "<<arr1.calculate();
-//    std::cout<<"\ncalculate() dla tablicy 2 maks: "<<arr2.calculate();
-//
+//    Adding<std::string> a2("ciach ");
+//    a2.add("napis");
+//    a2.show();
+
     return 0;
 }

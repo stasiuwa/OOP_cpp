@@ -34,4 +34,7 @@ add_executable(untitled
         lab2/MeanBufor.cpp
         lab2/MeanBufor.h
         lab2/MaxBufor.cpp
-        lab2/MaxBufor.h)
+        lab2/MaxBufor.h
+        lab3/Adding.h
+        lab3/Student.h
+        lab3/Array.h)
