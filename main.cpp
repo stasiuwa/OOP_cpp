@@ -5,87 +5,64 @@
 // Created by student on 16.10.2023.
 //
 #include <iostream>
-
-#include "lab3/Adding.h"
-#include "lab3/Student.h"
-#include "lab3/Array.h"
+#include <map>
+#include <set>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
-template <typename T>
-void mySwap(T& a, T& b){
-    T temp;
-    temp=a;
-    a=b;
-    b=temp;
-}
-template <typename T>
-void showAll(T* tab[], int n){
-    for(int i=0;i>n;i++) tab[i]->show();
-}
-template <typename T>
-T elMin(T* arr, int size){
-    T min = arr[0];
-    for(int i=0;i<size;i++) if(arr[i]<min) min=arr[i];
-    return min;
+//5.1
+pair<int,int> duplicate(vector<int> vec){
+    set <int> s;
+    pair<int,int> temp;
+    int sum=0;
+    //for(int i=0; i<vec.size(); i++){
+    for(int i : vec){
+        if(s.count(i)==0) s.insert(i);
+        else temp.second = i;
+    }
+    for (int i : s) sum+=i;
+    temp.first = sum;
+    return temp;
 }
 
+template <typename T>
+void ksorxd(set<T> &s1, set<T> &s2){
+    set <int> sUnion, sIntersec, sXOR;
+    set_union(s1.begin(), s1.end(), s2.begin(), s2.end(), insert_iterator(sUnion,sUnion.begin()));
+    set_intersection(s1.begin(), s1.end(), s2.begin(), s2.end(), insert_iterator(sIntersec, sIntersec.begin()));
+    set_difference(sUnion.begin(), sUnion.end(), sIntersec.begin(), sIntersec.end(), insert_iterator(sXOR, sXOR.begin()));
+
+    cout<<"XOR: ";
+    for (T i: sXOR) cout<<i<<", ";
+    cout<<endl;
+}
+char stringDiffer(string str1, string str2){ // znaleźć dodany znak
+    map<string,string> temp;
+    temp.insert(pair<string,string>(str1,str2));
+    for(char c : str) {
+
+    }
+
+
+}
 int main(){
-//    Zadanie 3.3
 
-//    Array<int>* a1;
-//    a1 = new Array<int>(10);
-//    a1->add(11);
-//    a1->add(3);
-//    a1->add(6);
-//    a1->add(1);
-//    a1->add(3);
-//    a1->show();
-//    a1->sortR();
-//    a1->show();
-//    cout << "max: " << a1->maxElem() << endl;
-//    cout << "index: " << a1->search(3) << endl;
-//
-//    Array<double>* a2;
-//    a2 = new Array<double>();
-//    a2->add(12.4);
-//    a2->add(3.54);
-//    a2->add(9.6);
-//    a2->add(6.9);
-//    cout << "max: " << a2->maxElem() << endl;
-//    cout << "index: " << a2->search(1) << endl;
-//    a2->show();
-//    a2->sortR();
-//    a2->show();
+//5.1
+//    vector<int> vector1 = {3,1,2,6,7,2};
+//    pair<int,int> temp1 = duplicate(vector1);
+//    cout<<"Suma elementow unikatowych: "<<temp1.first<<" duplikat: "<<temp1.second<<endl;
 
-//    Zadanie 3.1 3.2
-//    double test[6] = {5.42, 1.11, 20.3875, 0, -345.2, -1};
-//    double min = elMin(test,6);
-//    std::cout<<"elem min= "<<min<<std::endl;
 
-//    double x=5.678, y=76.123;
-//    std::cout<<"x = "<<x<<" y = "<<y<<std::endl;
-//    mySwap(x,y);
-//    std::cout<<"x = "<<x<<" y = "<<y<<std::endl;
-//
-//    Adding<int>* arrAdd[3];
-//    for(int i=0;i<3;i++) arrAdd[i]=new Adding<int>(i);
-//    showAll(arrAdd,3);
-//
-//    Student<std::string>* arrStu[3];
-//    for(int i=0;i<3;i++) arrStu[i]=new Student<std::string>(i+2,"Pduzian");
-//    showAll(arrStu,3);
-//
-//    for(int i=0;i<3;i++) delete arrAdd[i];
-//    for(int i=0;i<3;i++) delete arrStu[i];
+//5.2
+//    set<int> s1={3,2,1,5,7}, s2={2,3,1,9,8};
+//    ksorxd(s1,s2);
 
-//    Adding<double> a1(5.5);
-//    a1.add(5.5);
-//    a1.show();
-//
-//    Adding<std::string> a2("RKS ");
-//    a2.add("HUWDU");
-//    a2.show();
+//5.3
+    string test1 = "siwy dym czarne chmury";
+    string test2 = "dmy  yswicza rneXchum yr";
+
 
     return 0;
 }
