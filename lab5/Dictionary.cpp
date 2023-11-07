@@ -34,7 +34,6 @@ void Dictionary::showTranslation(std::string word) {
     }
     cout<<endl;
 }
-//geekforgeeks
 bool Dictionary::sortBySecDesc(pair<string, string> &a, pair<string, string> &b) {
     return a.second<b.second;
 }
