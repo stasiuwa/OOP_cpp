@@ -37,4 +37,6 @@ add_executable(untitled
         lab2/MaxBufor.h
         lab3/Adding.h
         lab3/Student.h
-        lab3/Array.h)
+        lab3/Array.h
+        lab5/Dictionary.cpp
+        lab5/Dictionary.h)
