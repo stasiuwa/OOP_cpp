@@ -39,4 +39,8 @@ add_executable(untitled
         lab3/Student.h
         lab3/Array.h
         lab5/Dictionary.cpp
-        lab5/Dictionary.h)
+        lab5/Dictionary.h
+        lab4/Citizen.cpp
+        lab4/Citizen.h
+        lab4/City.cpp
+        lab4/City.h)

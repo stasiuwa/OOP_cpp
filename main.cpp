@@ -10,6 +10,8 @@
 #include <vector>
 #include <algorithm>
 
+#include "lab4/City.h"
+
 using namespace std;
 
 template <typename T>
@@ -87,5 +89,79 @@ int main(){
 //    sort(vector2.begin(), vector2.end(), sortByDigits);
 //    for_each(vector2.begin(), vector2.end(), print);
 
+//4.3 dane do testu zapożyczone od Kamila Wodowskiego
+    Citizen c1("Kamil", "Wodowski", 21, 'm', "21-104");
+    Citizen c2("Pawel", "Winski", 22, 'm', "20-200");
+    Citizen c3("Krystian", "Zielonka", 21, 'm', "20-200");
+    Citizen c4("Emilia", "Wojcik", 20, 'k', "24-085");
+    Citizen c5("Julia", "Sierpien", 23, 'k', "21-104");
+    City city("Lublin");
+    city.addCitizen(c1);
+    city.addCitizen(c2);
+    city.addCitizen(c3);
+    city.addCitizen(c4);
+    city.addCitizen(c5);
+
+    city.showCity();
+    // counting women
+    cout << "Baby: " << city.countWomen() << endl;
+
+    // number of citizens
+    cout << "Populacja: " << city.countCitizens() << endl;
+
+    // number of adults
+    cout << "Dorosli: " << city.countAdults() << endl;
+
+    // counting and showing postal codes
+    int count = city.countPostalCodes();
+    cout << "Unikalnych kodow pocztowych: " << count << endl;
+
+    // showing and deleting citizens
+    city.showCitizens();
+    cout << endl;
+    // city.deleteCitizen("Emilia", 20);
+    // city.deleteCitizen("Kamil", 21);
+    // city.show_citizens();
+
+    cout << endl << "ROZDZIAL DRUGI" << endl << endl;
+
+    City city2("Warszawa");
+    Citizen c21("Edyta", "Swistek", 24, 'k', "31-100");
+    Citizen c22("Franciszka", "Lesniowska", 17, 'k', "31-100");
+    city2.addCitizen(c21);
+    city2.addCitizen(c22);
+
+    Citizen c31("Janusz", "Rekowski", 31, 'm', "40-144");
+    Citizen c32("Alan", "Kalicki", 15, 'm', "40-124");
+    Citizen c33("Edward", "Jura", 21, 'm', "40-201");
+    Citizen c34("Kamil", "Zdun", 2137, 'm', "40-420");
+    City city3("Krakow");
+    city3.addCitizen(c31);
+    city3.addCitizen(c32);
+    city3.addCitizen(c33);
+    city3.addCitizen(c34);
+
+    vector<City> cities;
+    cities.push_back(city);
+    cities.push_back(city2);
+    cities.push_back(city3);
+    City::showCities(cities);
+    cout<<endl;
+    for(City c : cities) {
+        c.showCity();
+        c.showPostalCodes();
+        cout<<endl;
+    }
+    City::theMost(cities, 1);
+    City::theMost(cities, 2);
+
+    // statistics
+    cout << "Statystyki:\n"<<endl;
+    City::statistic(cities);
+
+    // sorting
+    cout<<"Posortowane:\n"<<endl;
+    City::sortCities(cities);
+    City::showCities(cities);
     return 0;
 }
