@@ -3,6 +3,17 @@ project(untitled)
 
 set(CMAKE_CXX_STANDARD 17)
 
+set(BOOST_ROOT "boost_1_83_0")
+find_package(Boost 1.83.0)
+if(NOT Boost_FOUND)
+    message(FATAL_ERROR "Could not find boost!")
+endif()
+message(STATUS "Boost_INCLUDE_DIRS: ${Boost_INCLUDE_DIRS}")
+message(STATUS "Boost_LIBRARIES: ${Boost_LIBRARIES}")
+message(STATUS "Boost_VERSION: ${Boost_VERSION}")
+include_directories(${Boost_INCLUDE_DIR})
+
+
 add_executable(untitled
         lab1/Person.cpp
         lab1/Person.h
@@ -43,4 +54,6 @@ add_executable(untitled
         lab4/Citizen.cpp
         lab4/Citizen.h
         lab4/City.cpp
-        lab4/City.h)
+        lab4/City.h
+        lab6/Person.cpp
+        lab6/Person.h)

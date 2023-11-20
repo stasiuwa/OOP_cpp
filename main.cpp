@@ -5,163 +5,83 @@
 // Created by student on 16.10.2023.
 //
 #include <iostream>
-#include <list>
-#include <random>
-#include <vector>
-#include <algorithm>
 
-#include "lab4/City.h"
+#include <boost/multi_index_container.hpp>
+#include <boost/multi_index/hashed_index.hpp>
+#include <boost/multi_index/member.hpp>
+#include <boost/multi_index/random_access_index.hpp>
+#include <boost/multi_index/ordered_index.hpp>
+#include <boost/bind.hpp>
+
+#include "lab6/Person.h"
 
 using namespace std;
+using namespace boost::multi_index;
 
-template <typename T>
-void show(T &con)
-{
-    for(typename T::iterator it=con.begin( ); it!=con.end( ); it++)
-        cout << *it << " ";
-    cout << endl;
-}
-bool sortBySum(int n1, int n2){
-    int sum1 = 0, sum2 = 0, m;
-    while(n1 != 0)
-    {
-        m = n1 % 10;
-        sum1 += m;
-        n1 = n1 / 10;
-    }
-    while (n2 != 0)
-    {
-        m = n2 % 10;
-        sum2 += m;
-        n2 = n2 / 10;
-    }
-    return sum1 < sum2;
-}
-bool sortByDigits(int n1, int n2){
-    int count1 = 0, count2 = 0;
-    while (n1 != 0)
-    {
-        n1 = n1 / 10;
-        count1++;
-    }
-    while (n2 != 0)
-    {
-        n2 = n2 / 10;
-        count2++;
-    }
-    return count1 < count2;
-}
-void print(int n) { cout<<n<<" "; }
+typedef multi_index_container<Person, indexed_by<
+            hashed_non_unique<member<Person, string, &Person::name>>,
+            hashed_non_unique<member<Person, int, &Person::age>>
+        >> person_multi;
+
+typedef person_multi::nth_index<0>::type name_type;
+typedef person_multi::nth_index<1>::type age_type;
+
+typedef multi_index_container<Person, indexed_by<
+            ordered_non_unique<member<Person, string, &Person::name>>,
+            ordered_non_unique<member<Person, int, &Person::age>>,
+            random_access<>
+        >> person_multi_2;
+
+typedef person_multi_2::nth_index<0>::type name_type2;
+typedef person_multi_2::nth_index<1>::type age_type2;
+
+void UlaToUrszula(Person& x){ x.name = "Urszula"; }
+void AlaToAlicja(Person& x){ if(x.name=="Ala") x.name = "Alicja"; }
+
 int main(){
-//4.2
-//    random_device rand;
-//    mt19937 gen(rand());
-//    uniform_int_distribution<> dis(1, 100);
-//    int random_number = dis(gen);
-//    cout << random_number << endl;
-//
-//    list<int> l;
-//    uniform_int_distribution<> dis1(-100, 100);
-//    int rnd;
-//    for (int i = 0; i < random_number; i++)
-//    {
-//        rnd = dis1(gen);
-//        if(rnd > 0)
-//        {
-//            l.push_front(rnd);
-//        }
-//        else
-//        {
-//            l.push_back(rnd);
-//        }
-//    }
-//    show(l);
 
-//4.4
-//    vector<int> vector1 = { 2137, 420, 69, 1337, 666, 997};
-//    vector<int> vector2 = vector1;
-//
-//    cout<<"sortowanie sumą cyfr" <<endl;
-//    sort(vector1.begin(), vector1.end(), sortBySum);
-//    for_each(vector2.begin(), vector2.end(), print);
-//
-//    cout<<"sortowanie liczbą cyfr" <<endl;
-//    sort(vector2.begin(), vector2.end(), sortByDigits);
-//    for_each(vector2.begin(), vector2.end(), print);
+    person_multi persons;
+    persons.insert({"Ala", 40});
+    persons.insert({"Piotr", 10});
+    persons.insert({"Ola", 18});
+    persons.insert({"Ala", 46});
+    persons.insert({"Ula", 46});
 
-//4.3 dane do testu zapożyczone od Kamila Wodowskiego
-    Citizen c1("Kamil", "Wodowski", 21, 'm', "21-104");
-    Citizen c2("Pawel", "Winski", 22, 'm', "20-200");
-    Citizen c3("Krystian", "Zielonka", 21, 'm', "20-200");
-    Citizen c4("Emilia", "Wojcik", 20, 'k', "24-085");
-    Citizen c5("Julia", "Sierpien", 23, 'k', "21-104");
-    City city("Lublin");
-    city.addCitizen(c1);
-    city.addCitizen(c2);
-    city.addCitizen(c3);
-    city.addCitizen(c4);
-    city.addCitizen(c5);
+    cout<<"Liczba osob o imieniu ALA: "<<persons.count("Ala")<<endl;
+    cout<<"Liczba osob o imieniu Ala: "<<persons.get<0>().count("Ala")<<endl;
 
-    city.showCity();
-    // counting women
-    cout << "Baby: " << city.countWomen() << endl;
+    age_type &age_index = persons.get<1>();
+    cout<<"Liczba osob z wiekiem 18lat: "<<age_index.count(18)<<endl;
 
-    // number of citizens
-    cout << "Populacja: " << city.countCitizens() << endl;
+    //listing 6.3
+    // for(name_type::iterator it2=persons.get<0>().begin(); it2!=persons.get<0>().end(); it2++) it2->show();
 
-    // number of adults
-    cout << "Dorosli: " << city.countAdults() << endl;
+    //listing 6.4
+    for(age_type ::iterator it=persons.get<1>().begin(); it!=persons.get<1>().end(); it++) it->show();
 
-    // counting and showing postal codes
-    int count = city.countPostalCodes();
-    cout << "Unikalnych kodow pocztowych: " << count << endl;
+    auto &age_index1 = persons.get<1>();
+    auto it2 = age_index1.find(46);
+    cout << "Znaleziona osobam, ktora ma 46 lat: " << it2->name << endl;
 
-    // showing and deleting citizens
-    city.showCitizens();
-    cout << endl;
-    // city.deleteCitizen("Emilia", 20);
-    // city.deleteCitizen("Kamil", 21);
-    // city.show_citizens();
+    auto &name_index1 = persons.get<0>();
+    auto it1 = name_index1.find("Ula");
+    name_index1.modify(it1, boost::bind(UlaToUrszula,placeholders::_1));
 
-    cout << endl << "ROZDZIAL DRUGI" << endl << endl;
-
-    City city2("Warszawa");
-    Citizen c21("Edyta", "Swistek", 24, 'k', "31-100");
-    Citizen c22("Franciszka", "Lesniowska", 17, 'k', "31-100");
-    city2.addCitizen(c21);
-    city2.addCitizen(c22);
-
-    Citizen c31("Janusz", "Rekowski", 31, 'm', "40-144");
-    Citizen c32("Alan", "Kalicki", 15, 'm', "40-124");
-    Citizen c33("Edward", "Jura", 21, 'm', "40-201");
-    Citizen c34("Kamil", "Zdun", 2137, 'm', "40-420");
-    City city3("Krakow");
-    city3.addCitizen(c31);
-    city3.addCitizen(c32);
-    city3.addCitizen(c33);
-    city3.addCitizen(c34);
-
-    vector<City> cities;
-    cities.push_back(city);
-    cities.push_back(city2);
-    cities.push_back(city3);
-    City::showCities(cities);
-    cout<<endl;
-    for(City c : cities) {
-        c.showCity();
-        c.showPostalCodes();
-        cout<<endl;
+    cout<<"Przed modyfikacja: "<<endl;
+    std::vector<name_type::iterator> elements;
+    for(name_type::iterator it=persons.get<0>().begin(); it!=persons.get<0>().end(); it++){
+        it->show();
+        elements.push_back(it);
     }
-    City::theMost(cities, 1);
-    City::theMost(cities, 2);
+    for (int i=0; i<elements.size(); i++) {
+        name_index1.modify(elements[i], boost::bind(AlaToAlicja,_1));
+//        name_index1.modify(elements[i], [](auto && PH1) { return AlaToAlicja(std::forward<decltype(PH1)>(PH1)); });
+    }
+    cout<<"Po modyfikacji: "<<endl;
+    for (name_type::iterator it=persons.get<0>().begin(); it!=persons.get<0>().end(); it++) it->show();
 
-    // statistics
-    cout << "Statystyki:\n"<<endl;
-    City::statistic(cities);
+//    --------------------------------------------------------------
+    person_multi_2 persons2;
 
-    // sorting
-    cout<<"Posortowane:\n"<<endl;
-    City::sortCities(cities);
-    City::showCities(cities);
     return 0;
 }
