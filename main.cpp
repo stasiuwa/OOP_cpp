@@ -16,10 +16,15 @@ int main(){
     Contacts book;
     book.addContact(user1);
     book.addContact({"Kamil", "Zdun", "Wesola", 19, 510325123});
-    book.addContact({"Krzysztof", "Lecina", "Wesola", 16, 517325123});
+    book.addContact({"Krzysztof", "Zdun", "Wesola", 16, 517325123});
     book.showBook();
     book.getAllFromStreet("Wesola");
     book.modifyStreet("Wesola","Sloneczna");
+    book.showBook();
+    book.countAdults();
+    book.countUniqueSurnames();
+    book.getFromPhoneNumber(997);
+    book.deleteContact(997);
     book.showBook();
     return 0;
 }

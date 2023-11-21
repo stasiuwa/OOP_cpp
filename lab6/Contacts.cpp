@@ -48,7 +48,10 @@ void Contacts::modifyStreet(string old_street, string new_street) {
 }
 
 void Contacts::countAdults() {
-    cout<<"\nILOSC PELNOLETNICH OSOB: " << phone_book.get<1>().count(18) << endl;
+    int count = 0;
+    for (auto it=phone_book.get<1>().begin(); it!=phone_book.get<1>().end(); it++) if(it->age > 18) count++;
+    cout<<"\nILOSC PELNOLETNICH OSOB: "<<count<<endl;
+
 }
 
 void Contacts::countUniqueSurnames() {
@@ -57,7 +60,7 @@ void Contacts::countUniqueSurnames() {
         surnames[it.surname]++;
     }
     cout<<"Unikalne nazwiska: ";
-    for (pair<string,int> p : surnames) if(p.second==0) cout<<p.first<<", "<<endl;
+    for (pair<string,int> p : surnames) if(p.second==1) cout<<p.first<<", "<<endl;
 }
 
 void Contacts::showBook() {

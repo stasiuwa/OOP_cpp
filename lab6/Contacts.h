@@ -29,13 +29,13 @@ using namespace boost::multi_index;
 typedef multi_index_container<Contact, indexed_by<
         hashed_unique<member<Contact, int, &Contact::phone_number>>,
         hashed_non_unique<member<Contact, int, &Contact::age>>,
+        hashed_non_unique<member<Contact, string, &Contact::address>>
 //        hashed_non_unique<member<Contact, string, &Contact::name>>,
 //        hashed_non_unique<member<Contact, string, &Contact::surname>>
-        hashed_non_unique<member<Contact, string, &Contact::address>>
 >> contacts_multi;
 
 typedef contacts_multi::nth_index<0>::type phone_type;
-//typedef contacts_multi::nth_index<1>::type age_type;
+typedef contacts_multi::nth_index<1>::type age_type;
 //typedef contacts_multi::nth_index<2>::type name_type;
 //typedef contacts_multi::nth_index<3>::type surname_type;
 typedef contacts_multi::nth_index<2>::type address_type;
