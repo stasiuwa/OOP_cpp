@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.26)
-project(untitled)
+project(Adv_OOP_C++)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -13,8 +13,7 @@ message(STATUS "Boost_LIBRARIES: ${Boost_LIBRARIES}")
 message(STATUS "Boost_VERSION: ${Boost_VERSION}")
 include_directories(${Boost_INCLUDE_DIR})
 
-
-add_executable(untitled
+add_executable(Adv_OOP_C++
         lab1/Person.cpp
         lab1/Person.h
         lab1/Teacher.cpp
@@ -56,4 +55,8 @@ add_executable(untitled
         lab4/City.cpp
         lab4/City.h
         lab6/Person.cpp
-        lab6/Person.h)
+        lab6/Person.h
+        lab6/Contact.cpp
+        lab6/Contact.h
+        lab6/Contacts.cpp
+        lab6/Contacts.h)

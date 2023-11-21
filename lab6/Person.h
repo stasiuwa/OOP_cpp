@@ -16,8 +16,6 @@ public:
     void show() const;
 };
 
-void Person::show() const {
-    cout<<"name: "<<name<<" age: "<<age<<endl;
-}
+
 
 #endif //UNTITLED_PERSON_H

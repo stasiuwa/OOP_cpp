@@ -1,0 +1,173 @@
+//
+// Created by milit on 17.10.2023.
+//
+//
+// Created by student on 16.10.2023.
+//
+#include <iostream>
+#include <vector>
+
+#include <boost/multi_index_container.hpp>
+#include <boost/multi_index/hashed_index.hpp>
+#include <boost/multi_index/member.hpp>
+#include <boost/multi_index/random_access_index.hpp>
+#include <boost/multi_index/ordered_index.hpp>
+#include <boost/bind/bind.hpp>
+//boost Fusion
+#include <boost/fusion/container.hpp>
+#include <boost/fusion/sequence.hpp>
+#include <boost/mpl/int.hpp>
+
+#include "lab6/Person.h"
+
+using namespace std;
+using namespace boost::multi_index;
+
+//typedef multi_index_container<Person, indexed_by<
+//            hashed_non_unique<member<Person, string, &Person::name>>,
+//            hashed_non_unique<member<Person, int, &Person::age>>
+//        >> person_multi;
+//
+//typedef person_multi::nth_index<0>::type name_type;
+//typedef person_multi::nth_index<1>::type age_type;
+//
+//typedef multi_index_container<Person, indexed_by<
+//            ordered_non_unique<member<Person, string, &Person::name>>,
+//            ordered_non_unique<member<Person, int, &Person::age>>,
+//            random_access<>
+//        >> person_multi_2;
+//
+//typedef person_multi_2::nth_index<0>::type name_type2;
+//typedef person_multi_2::nth_index<1>::type age_type2;
+//
+//void UlaToUrszula(Person& x){ x.name = "Urszula"; }
+//void AlaToAlicja(Person& x){ if(x.name=="Ala") x.name = "Alicja"; }
+//
+//class Print {
+//public:
+//    template<typename T>
+//    void operator()(T t){ cout<<t<<endl; }
+//};
+//class Operation {
+//public:
+//    int operator()(int a, int b){ return a-b; }
+//    int operator()(char a){ return (int)a-32; }
+//};
+//int addition(int a, int b){ return a+b; }
+//void firstArgMod(int& x, int y){ x+=y; }
+//void printF(int x) { cout<<x<<" "; }
+//void contatination(int i1, int i2){ cout<<"i1: "<<i1<<"  i2: "<<i2<<endl; }
+int main(){
+
+//    cout<<"vec: "<<endl;
+//    std::vector<int> vec = {1, 2, 3, 4, 5};
+//    std::vector<int>::iterator iter1 = vec.begin();
+//    std::vector<int>::iterator iter2 = vec.end();
+//    for_each(iter1, iter2, boost::bind(printF, placeholders::_1));
+//
+//    cout<<endl<<"vec - kazdy element zwiekszony o 5: ";
+//    for_each(iter1, iter2, boost::bind(firstArgMod, placeholders::_1, 5));
+//    for_each(iter1, iter2, printF);
+//
+//    int count = std::count_if(vec.begin(), vec.end(),
+//                                  boost::bind(std::logical_and<bool>(),
+//                                          boost::bind(std::greater<int>(), placeholders::_1, 8),
+//                                          boost::bind(std::less_equal<int>(), placeholders::_1, 10)
+//                                  )
+//                              );
+//    cout<<endl<<"vec - 8 < Elementy <= 10: "<<count<<endl;
+//
+//    cout<<addition(1,2)<<endl;
+//    int res = boost::bind(addition, placeholders::_1, placeholders::_2)(1,2);
+//    cout<<res<<endl;
+//
+//    int i1=1, i2=2;
+//    boost::bind(contatination, placeholders::_2, placeholders::_1)(i1,i2);
+//
+//    Operation ff;
+//    int x = 1024;
+//    cout<<"Funktor: "<<bind<int>(ff, placeholders::_1, placeholders::_1)(x)<<endl;
+//    char a = 'a';
+//    cout<<"Funktor: "<<bind<char>(ff, placeholders::_1)(a)<<endl;
+//    boost::fusion::vector<int, string, bool, double> vec{10, "C++", true, 3.14};
+//    cout<<"Trzeci element w vec:"<<boost::fusion::at<boost::mpl::int_<2>>(vec)<<endl;
+//    auto vec2 = push_back(vec, 'M');
+//
+//    cout<<"Liczba elemnentow w vec1: "<< size(vec) <<endl;
+//    cout<<"Liczba elemnentow w vec2: "<< size(vec2) <<endl;
+//    cout<<"Pierwszyt element w vec2: "<< front(vec2) <<endl;
+//    cout<<"Ostatni element w vec2: "<< back(vec2) <<endl;
+//
+//    cout<<"Caly wektor vec2: "<<endl;
+//    boost::fusion::for_each(vec2,Print());
+//
+//    auto itvStart = begin(vec);
+//    auto itvStop = end(vec);
+//
+//    cout<<"Pierwszy element: "<<*itvStart<<endl;
+//    cout<<"Drugi element: "<<*next(itvStart);
+//    cout<<"Trzeci element: "<<*advance<boost::mpl::int_<2>>(itvStart)<<endl;
+//    ---------------------------------------------------------1
+//    person_multi persons;
+//    persons.insert({"Ala", 40});
+//    persons.insert({"Piotr", 10});
+//    persons.insert({"Ola", 18});
+//    persons.insert({"Ala", 46});
+//    persons.insert({"Ula", 46});
+//
+//    cout<<"Liczba osob o imieniu ALA: "<<persons.count("Ala")<<endl;
+//    cout<<"Liczba osob o imieniu Ala: "<<persons.get<0>().count("Ala")<<endl;
+//
+//    age_type &age_index = persons.get<1>();
+//    cout<<"Liczba osob z wiekiem 18lat: "<<age_index.count(18)<<endl;
+//
+//    //listing 6.3
+//    // for(name_type::iterator it2=persons.get<0>().begin(); it2!=persons.get<0>().end(); it2++) it2->show();
+//
+//    //listing 6.4
+//    for(age_type ::iterator it=persons.get<1>().begin(); it!=persons.get<1>().end(); it++) it->show();
+//
+//    auto &age_index1 = persons.get<1>();
+//    auto it2 = age_index1.find(46);
+//    cout << "Znaleziona osobam, ktora ma 46 lat: " << it2->name << endl;
+//
+//    auto &name_index1 = persons.get<0>();
+//    auto it1 = name_index1.find("Ula");
+//    name_index1.modify(it1, boost::bind(UlaToUrszula,placeholders::_1));
+//
+//    cout<<"Przed modyfikacja: "<<endl;
+//    std::vector<name_type::iterator> elements;
+//    for(name_type::iterator it=persons.get<0>().begin(); it!=persons.get<0>().end(); it++){
+//        it->show();
+//        elements.push_back(it);
+//    }
+//    for (int i=0; i<elements.size(); i++) {
+//        name_index1.modify(elements[i], boost::bind(AlaToAlicja,_1));
+////        name_index1.modify(elements[i], [](auto && PH1) { return AlaToAlicja(std::forward<decltype(PH1)>(PH1)); });
+//    }
+//    cout<<"Po modyfikacji: "<<endl;
+//    for (name_type::iterator it=persons.get<0>().begin(); it!=persons.get<0>().end(); it++) it->show();
+
+//    -------------------------------------------------------------- 2
+//    person_multi_2 persons2;
+//    persons2.get<2>().push_back({"Ala",40});
+//    persons2.get<2>().push_back({"Ala", 45});
+//    persons2.get<2>().push_back({"Piotr", 10});
+//    persons2.get<2>().push_back({"Ola", 18});
+//    persons2.get<2>().push_back({"Aga", 46});
+//    persons2.get<2>().push_back({"Ula", 46});
+//
+//    auto &name_index2 = persons2.get<0>();
+//    auto iterStart = name_index2.equal_range("Ala");
+//    auto iterStop = name_index2.equal_range("Piotr");
+//
+//    for(name_type2::iterator it=iterStart.first; it!=iterStop.second; it++) it->show();
+//
+//    auto from = name_index2.lower_bound("Ala");
+//    auto to = name_index2.upper_bound("Piotr");
+//
+//    cout<<"Przedział od ALA do PIOTR - wersja 2"<<endl;
+//    for(auto it=from; it!=to; it++) it->show();
+
+    return 0;
+}
