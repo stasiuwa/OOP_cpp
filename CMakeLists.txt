@@ -49,4 +49,5 @@ add_executable(OOP_C++
         lab6/Contact.cpp
         lab6/Contact.h
         lab6/Contacts.cpp
-        lab6/Contacts.h)
+        lab6/Contacts.h
+)
