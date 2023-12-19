@@ -50,4 +50,13 @@ add_executable(OOP_C++
         lab6/Contact.h
         lab6/Contacts.cpp
         lab6/Contacts.h
+        lab11/Buffer.h
+        lab11/BufferArr.h
+        lab11/BufferArr.cpp
+        lab11/BufferFile.cpp
+        lab11/BufferFile.h
+        lab11/Warehouse.cpp
+        lab11/Warehouse.h
+        lab11/Shop.cpp
+        lab11/Shop.h
 )

@@ -13,3 +13,7 @@ double MeanBufor::calculate() {
 MeanBufor::MeanBufor() : Bufor() {}
 
 MeanBufor::MeanBufor(int size1) : Bufor(size1) {}
+
+double MeanBufor::calculate(int i) {
+    return 0;
+}

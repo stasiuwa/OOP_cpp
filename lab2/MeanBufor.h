@@ -12,6 +12,7 @@ public:
     MeanBufor(int size1);
 
     double calculate() override;
+    double calculate(int i);
 };
 
 
