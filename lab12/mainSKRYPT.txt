@@ -1,0 +1,34 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+bool fn(int l, int r) { return l>r; }
+
+void printVec(vector<int> num) {
+    cout<<endl<<"Zawartosc num: ";
+    for (auto it = num.begin(); it != num.end() ; it++) cout<<*it<<" ";
+    cout<<endl;
+}
+
+int main() {
+    vector <int> num {1,2,3,4,5,6,7,8,9};
+
+    sort(num.begin(),num.end(),fn);
+
+    sort(num.begin(), num.end(), [](int l, int r) -> bool { return l>r; });
+
+    printVec(num);
+
+    transform(num.begin(), num.end(), num.begin(), [](int el) -> int { return el*2; });
+    cout<<"Zawartosc num:";
+    for_each(num.begin(),num.end(), [](int el) -> void {cout<<"**"<<el;} );
+    for_each(num.begin(), num.end(), [](int &el) -> void { el*=2; } );
+//    for_each(num.begin(), num.end(), [&](int el) -> void { el*=2; } ); // nie dziala
+    printVec(num);
+
+    int sum=0;
+
+    return 0;
+}

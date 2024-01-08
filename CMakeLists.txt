@@ -59,4 +59,6 @@ add_executable(OOP_C++
         lab11/Warehouse.h
         lab11/Shop.cpp
         lab11/Shop.h
+        lab12/CAr.cpp
+        lab12/CAr.h
 )
